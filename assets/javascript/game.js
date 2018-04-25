@@ -39,7 +39,7 @@ var validatedInput = "";
     // choose a random word from the dictionary
 function pullWordFromDictionary() {  //  NOT TO BE USED MANUALLY - ONLY USED BY OTHER FUNCTIONS
         // this is the dictionary of words my game will use
-    var wordDictionary = ["hopeless", "situation", "backstroke", "parliament", "airship", "elephant", "tragedy", "prosperous", "geography", "superior", "underrated", "ability", "satirizing"];
+    var wordDictionary = ["hopeless", "situation", "backstroke", "parliament", "airship", "elephant", "tragedy", "prosperous", "geography", "superior", "underrated", "ability", "satirizing", "presbyterian", "teacher", "blockade", "extrication", "masterpiece", "dedicate", "atmosphere", "airships", "temperature", "atmosphere", "augury", "superfluous"];
     chosenWord = wordDictionary[Math.floor(Math.random() * wordDictionary.length)];
 };
     // this function breaks up the word to be guessed into letters and stores those letters in wordBeingSolved array
@@ -163,7 +163,10 @@ document.onkeyup = function(pressed) {
                             newRound();
                             document.getElementById("readMe").textContent = "New game has begun.";
                         }, 4000);
-                    }
+                        setTimeout(function(){
+                            document.getElementById("readMe").textContent = "";
+                        }, 6000);
+                    };
                 }
                     // otherwise, it is a valid guess
                 else {
@@ -183,7 +186,10 @@ document.onkeyup = function(pressed) {
                                     newRound();
                                     document.getElementById("readMe").textContent = "New game has begun.";
                                 }, 4000);
-                            }
+                                setTimeout(function(){
+                                    document.getElementById("readMe").textContent = "";
+                                }, 6000);
+                            };
                         }
                             // otherwise, note that the guessed letter doesn't match the ith element in the console
                         else {
