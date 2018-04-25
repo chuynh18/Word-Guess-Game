@@ -39,7 +39,7 @@ var validatedInput = "";
     // choose a random word from the dictionary
 function pullWordFromDictionary() {  //  NOT TO BE USED MANUALLY - ONLY USED BY OTHER FUNCTIONS
         // this is the dictionary of words my game will use
-    var wordDictionary = ["hopeless", "situation", "backstroke", "parliament", "airship", "elephant", "tragedy", "prosperous", "geography", "superior", "underrated", "ability", "satirizing", "presbyterian", "teacher", "blockade", "extrication", "masterpiece", "dedicate", "atmosphere", "airships", "temperature", "atmosphere", "augury", "superfluous"];
+    var wordDictionary = ["chicken"];
     chosenWord = wordDictionary[Math.floor(Math.random() * wordDictionary.length)];
 };
     // this function breaks up the word to be guessed into letters and stores those letters in wordBeingSolved array
@@ -49,7 +49,7 @@ function chooseWord() {
     for (var i = 0; i < chosenWord.length; i++) {
         wordBeingSolved.push(chosenWord[i]);
     };
-    console.log("[info] You must guess the following word: " + chosenWord + ".  Hey, wait a minute!  Get out of here!");
+    console.log("[info] Chicken Chicken Chicken Chicken Chicken Chicken: " + chosenWord + ".  Chicken, Chicken Chicken Chicken!  Chicken Chicken Chicken Chicken!");
 };
 
     // this function displays the appropriate number of placeholder characters and is called at game start only
@@ -127,8 +127,8 @@ document.onkeyup = function(pressed) {
     var lettersArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         // if the input is not a letter, reject it
     if (lettersArray.indexOf(lowerCaseInput) === -1) {
-        document.getElementById("readMe").textContent = lowerCaseInput + " is not a letter.  Try again!";
-        console.log("[warn]: " + lowerCaseInput + " is not a letter.");
+        document.getElementById("readMe").textContent = lowerCaseInput + " Chicken Chicken Chicken Chicken.  Chicken Chicken!";
+        console.log("[warn]: " + lowerCaseInput + " Chicken Chicken Chicken Chicken.");
         blink("#ffffaa", 2, 1);
     }
         // otherwise, if the input is a letter...
@@ -137,8 +137,8 @@ document.onkeyup = function(pressed) {
 
             // check if it has already been guessed.  if so, reject it.
         if (playerGuesses.indexOf(validatedInput) >= 0) {
-            document.getElementById("readMe").textContent = validatedInput + " has already been guessed this round.";
-            console.log("[warn]: " + validatedInput + " has already been guessed this round.");
+            document.getElementById("readMe").textContent = validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken.";
+            console.log("[warn]: " + validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken.");
             blink("#ffffaa", 2, 1);
         }
             // otherwise, it hasn't been guessed yet.
@@ -158,11 +158,11 @@ document.onkeyup = function(pressed) {
                         // and you can only run out of guesses when you guess a letter not contained in the word you're trying to guess
                     if (guessesLeft === 0) {
                         blink("#ffaaaa", 4, 5);
-                        document.getElementById("readMe").innerHTML = "You've lost this one.  The word you <b>FAILED</b> to guess was<strong> " + chosenWord + " </strong>.  New game will begin shortly...";
+                        document.getElementById("readMe").innerHTML = "Chicken Chicken Chicken Chicken.  Chicken Chicken Chicken <b>Chicken</b> Chicken Chicken Chicken<strong> " + chosenWord + " </strong>.  Chicken Chicken Chicken Chicken Chicken...";
                         losses++;
                         setTimeout(function(){
                             newRound();
-                            document.getElementById("readMe").textContent = "New game has begun.";
+                            document.getElementById("readMe").textContent = "Chicken Chicken Chicken Chicken.";
                         }, 4000);
                         setTimeout(function(){
                             document.getElementById("readMe").textContent = "";
@@ -181,11 +181,11 @@ document.onkeyup = function(pressed) {
                                 // this means the player has guessed all the letters and should win
                             if (inProgressWord.indexOf("_") === -1) {
                                 blink("#aaffaa", 4, 5);
-                                document.getElementById("readMe").innerHTML = "<b>You're winner!</b>  The word was <strong>" + chosenWord + "</strong>.  " + "New game will begin shortly...";
+                                document.getElementById("readMe").innerHTML = "<b>Chicken Chicken!</b>  Chicken Chicken Chicken <strong>" + chosenWord + "</strong>.  " + "Chicken Chicken Chicken Chicken Chicken...";
                                 wins++;
                                 setTimeout(function(){
                                     newRound();
-                                    document.getElementById("readMe").textContent = "New game has begun.";
+                                    document.getElementById("readMe").textContent = "Chicken Chicken Chicken Chicken.";
                                 }, 4000);
                                 setTimeout(function(){
                                     document.getElementById("readMe").textContent = "";
@@ -194,7 +194,7 @@ document.onkeyup = function(pressed) {
                         }
                             // otherwise, note that the guessed letter doesn't match the ith element in the console
                         else {
-                            console.log("[info]: " + validatedInput + " doesn't match the word being guessed at index " + i)
+                            console.log("[info]: " + validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken Chicken Chicken " + i)
                         };
                     };
                         // update the display for the player
