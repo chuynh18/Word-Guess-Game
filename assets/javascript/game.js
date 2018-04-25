@@ -22,6 +22,8 @@ var guessesLeft = 0;
 var playerGuesses = [];
     // array that stores the player's incorrect guesses thus far
 var playerIncorrectGuesses = [];
+    // the word the computer chose randomly from the dictionary
+var chosenWord = "";
     // array that stores the letters of the word the player is guessing
 var wordBeingSolved = [];
     // array that stores blanks for letters the player hasn't successfully guessed yet and also letters the player has successfully guessed
@@ -38,13 +40,12 @@ var validatedInput = "";
 function pullWordFromDictionary() {  //  NOT TO BE USED MANUALLY - ONLY USED BY OTHER FUNCTIONS
         // this is the dictionary of words my game will use
     var wordDictionary = ["hopeless", "situation", "backstroke", "parliament", "airship", "elephant", "tragedy", "prosperous", "geography", "superior", "underrated", "ability", "satirizing"];
-    return wordDictionary[Math.floor(Math.random() * wordDictionary.length)];
+    chosenWord = wordDictionary[Math.floor(Math.random() * wordDictionary.length)];
 };
-
     // this function breaks up the word to be guessed into letters and stores those letters in wordBeingSolved array
     // this is how you actually choose the word for the purposes of playing the game
 function chooseWord() {
-    var chosenWord = pullWordFromDictionary();
+    pullWordFromDictionary();
     for (var i = 0; i < chosenWord.length; i++) {
         wordBeingSolved.push(chosenWord[i]);
     };
@@ -96,14 +97,14 @@ function updateWinLossDisplay() { // NOT TO BE USED MANUALLY - perhaps you were 
 };
 
     // this function blinks obnoxiously.  args:  (str) color e.g. "red" or "#ff0000", (int) # of times to blink e.g. 1, 2, 3, 4
-function blink(color, reps) {
+function blink(color, reps, timescale) {
     for (var i = 0; i < reps+1; i++) {
         setTimeout(function(){
         document.getElementById("theBody").style.backgroundColor = color;
-        }, 200 * i - 100);
+        }, 200 * timescale * i - 100);
         setTimeout(function(){
         document.getElementById("theBody").style.backgroundColor = "#ffffff";
-        }, 200 * i);
+        }, 200 * timescale * i);
     };
 };
 
@@ -127,7 +128,7 @@ document.onkeyup = function(pressed) {
     if (lettersArray.indexOf(lowerCaseInput) === -1) {
         document.getElementById("readMe").textContent = lowerCaseInput + " is not a letter.  Try again!";
         console.log("[warn]: " + lowerCaseInput + " is not a letter.");
-        blink("#ffffaa", 2);
+        blink("#ffffaa", 2, 1);
     }
         // otherwise, if the input is a letter...
     else {
@@ -137,13 +138,13 @@ document.onkeyup = function(pressed) {
         if (playerGuesses.indexOf(validatedInput) >= 0) {
             document.getElementById("readMe").textContent = validatedInput + " has already been guessed this round.";
             console.log("[warn]: " + validatedInput + " has already been guessed this round.");
-            blink("#ffffaa", 2);
+            blink("#ffffaa", 2, 1);
         }
             // otherwise, it hasn't been guessed yet.
         else {
                 // log it as a player guess
             playerGuesses.push(validatedInput);
-                blink("#cccccc", 1);
+                blink("#cccccc", 1, 1);
                     // if the guessed letter isn't in the word being guessed,
                 if (wordBeingSolved.indexOf(validatedInput) === -1) {
                         // decrement guesses by 1
@@ -155,10 +156,13 @@ document.onkeyup = function(pressed) {
                         // putting the lose logic here, because you can only lose when you run out of guesses
                         // and you can only run out of guesses when you guess a letter not contained in the word you're trying to guess
                     if (guessesLeft === 0) {
-                        blink("#ffaaaa", 4);
-                        document.getElementById("readMe").textContent = "You've lost this one.";
+                        blink("#ffaaaa", 4, 5);
+                        document.getElementById("readMe").innerHTML = "You've lost this one.  The word you <b>FAILED</b> to guess was <strong>" + chosenWord + "</strong>.  New game will begin shortly...";
                         losses++;
-                        newRound();
+                        setTimeout(function(){
+                            newRound();
+                            document.getElementById("readMe").textContent = "New game has begun.";
+                        }, 4000);
                     }
                 }
                     // otherwise, it is a valid guess
@@ -172,10 +176,13 @@ document.onkeyup = function(pressed) {
                                 // if there are no more underscores in the array inProgressWord,
                                 // this means the player has guessed all the letters and should win
                             if (inProgressWord.indexOf("_") === -1) {
-                                blink("#aaffaa", 4);
-                                document.getElementById("readMe").textContent = "You're winner!"
+                                blink("#aaffaa", 4, 5);
+                                document.getElementById("readMe").innerHTML = "<b>You're winner!</b>  The word was <strong>" + chosenWord + "</strong>.  " + "New game will begin shortly...";
                                 wins++;
-                                newRound();
+                                setTimeout(function(){
+                                    newRound();
+                                    document.getElementById("readMe").textContent = "New game has begun.";
+                                }, 4000);
                             }
                         }
                             // otherwise, note that the guessed letter doesn't match the ith element in the console

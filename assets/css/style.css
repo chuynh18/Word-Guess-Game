@@ -7,6 +7,10 @@ h1 {
     font-size: 36pt;
 }
 
+strong {
+    font-size: 24pt;
+}
+
 /* This is a reference to Backstroke of the West
 http://tvtropes.org/pmwiki/pmwiki.php/JustForFun/BackstrokeOfTheWest
 Ctrl-F "Text How Big" */
