@@ -49,7 +49,7 @@ function chooseWord() {
     for (var i = 0; i < chosenWord.length; i++) {
         wordBeingSolved.push(chosenWord[i]);
     };
-    console.log("[info] Chicken Chicken Chicken Chicken Chicken Chicken: " + chosenWord + ".  Chicken, Chicken Chicken Chicken!  Chicken Chicken Chicken Chicken!");
+    console.log("[Chicken] Chicken Chicken Chicken Chicken Chicken Chicken: " + chosenWord + ".  Chicken, Chicken Chicken Chicken!  Chicken Chicken Chicken Chicken!");
 };
 
     // this function displays the appropriate number of placeholder characters and is called at game start only
@@ -74,7 +74,7 @@ function newRound() {
     chooseWord();
     showBlankSpots();
         // these were to help me debug why the game was concatenating new blank spaces to the previous round's word
-    // console.log("[info]: Beginning new game.  Resetting game state...");
+    // console.log("[Chicken]: Beginning new game.  Resetting game state...");
     // console.log("----------------------")
     // console.log("var wins: " + wins);
     // console.log("var losses: " + losses);
@@ -128,7 +128,7 @@ document.onkeyup = function(pressed) {
         // if the input is not a letter, reject it
     if (lettersArray.indexOf(lowerCaseInput) === -1) {
         document.getElementById("readMe").textContent = lowerCaseInput + " Chicken Chicken Chicken Chicken.  Chicken Chicken!";
-        console.log("[warn]: " + lowerCaseInput + " Chicken Chicken Chicken Chicken.");
+        console.log("[Chicken]: " + lowerCaseInput + " Chicken Chicken Chicken Chicken.");
         blink("#ffffaa", 2, 1);
     }
         // otherwise, if the input is a letter...
@@ -138,7 +138,7 @@ document.onkeyup = function(pressed) {
             // check if it has already been guessed.  if so, reject it.
         if (playerGuesses.indexOf(validatedInput) >= 0) {
             document.getElementById("readMe").textContent = validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken.";
-            console.log("[warn]: " + validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken.");
+            console.log("[Chicken]: " + validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken.");
             blink("#ffffaa", 2, 1);
         }
             // otherwise, it hasn't been guessed yet.
@@ -194,7 +194,7 @@ document.onkeyup = function(pressed) {
                         }
                             // otherwise, note that the guessed letter doesn't match the ith element in the console
                         else {
-                            console.log("[info]: " + validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken Chicken Chicken " + i)
+                            console.log("[Chicken]: " + validatedInput + " Chicken Chicken Chicken Chicken Chicken Chicken Chicken Chicken " + i)
                         };
                     };
                         // update the display for the player
