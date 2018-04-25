@@ -1,0 +1,19 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14pt;
+}
+
+h1 {
+    font-size: 36pt;
+}
+
+/* This is a reference to Backstroke of the West
+http://tvtropes.org/pmwiki/pmwiki.php/JustForFun/BackstrokeOfTheWest
+Ctrl-F "Text How Big" */
+.textHowBig {
+    font-size: 24pt;
+}
+
+#bad {
+    color: red;
+}
